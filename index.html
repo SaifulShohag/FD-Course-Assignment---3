@@ -4,10 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./assets/js/main.js"></script>
-    <title>JS - Rock Paper Scissors</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./assets/js/main.js" defer></script>
+    <title>Rock Paper Scissors</title>
 </head>
 <body>
-    
+    <section id="rps-ui">
+        <div class="display">
+            <div class="part1">
+                <p>Welcome to Rock Paper Scissors. It's a 5 round match. Good Luck!</p>
+            </div>
+            <div class="part2">
+                <img src="./assets/images/4.png" alt="Rock Paper Scissors Poster">
+            </div>
+        </div>
+        <div class="score-log">
+            Round:  0 | Won: 0 | Lost: 0
+        </div>
+        <div class="button-container">
+            <div onclick="playRound(0)">
+                <img src="./assets/images/0.png" alt="Button - Rock">
+            </div>
+            <div onclick="playRound(1)">
+                <img src="./assets/images/1.png" alt="Button - Paper">
+            </div>
+            <div onclick="playRound(2)">
+                <img src="./assets/images/2.png" alt="Button - Scissors">
+            </div>
+        </div>
+    </section>
 </body>
 </html>

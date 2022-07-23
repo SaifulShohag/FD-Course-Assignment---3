@@ -1,0 +1,73 @@
+* {
+    font-family: sans-serif, Verdana, monospace;
+    margin: 0;
+}
+
+#rps-ui {
+    max-width: 320px;
+    height: 85vh;
+    padding: 40px 15px 20px;
+    background-color: #33b29d;
+    margin: 13px auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+.display {
+    background-color: #292828;
+    flex: 1 1 0px;
+    display: flex;
+    flex-direction: column;
+}
+.display .part1, .display .part2 {
+    text-align: center;
+    flex: 1 1 0px;
+}
+.display .part1 p {
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    padding: 20px;
+    margin-top: 20px;
+}
+.display .part1 img {
+    transform: rotate(180deg);
+}
+.display .part1 img, .display .part2 img {
+    max-width: 100%;
+    height: auto;
+    max-height: 160px;
+}
+
+.score-log {
+    font-size: 20px;
+    font-weight: 900;
+    text-align: center;
+    border: 5px solid #292828;
+    margin: 10px 0;
+    padding: 8px 0;
+    background-color: #fff;
+}
+
+.button-container {
+    height: 90px;
+    background-color: beige;
+    display: flex;
+}
+.button-container div {
+    background-color: #435753;
+    flex: 1 1 0px;
+    cursor: pointer;
+}
+.button-container div:nth-of-type(2) {
+    margin: 0 5px;
+    background-color: #568e8e;
+}
+.button-container div:active {
+    background-color: #fff;
+}
+.button-container div img {
+    height: 100%;
+    width: 100%;
+}

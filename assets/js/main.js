@@ -1,3 +1,7 @@
+const scoreBoard = document.querySelector('.score-log');
+const dPart1 = document.querySelector('.display .part1');
+const dPart2IMG = document.querySelector('.display .part2 img');
+
 const rps = ['ROCK', 'PAPER', 'SCISSORS'];
 let userScore = 0;
 let computerScore = 0;
@@ -7,67 +11,29 @@ function computerPlay() {
     return index;
 }
 
-function userPlay() {
-    let userInput = prompt("Please 'Rock', 'Paper' or 'Scissors': ");
-    let index = rps.indexOf(userInput.toUpperCase());
-    if(index === -1) {
-        index = userPlay();
-    } 
-    return index;   
+function countScore(computerSelection, userSelection) {
+    let val1 = computerSelection == 2 ? 0 : computerSelection+1;
+    let val2 = val1 == 2 ? 0 : val1+1;
+
+    if (userSelection === val1) userScore++;
+    else if(userSelection === val2) computerScore++;
 }
 
-function playRound() {
+function playRound(userInput) {
     let computerSelection = computerPlay(); 
-    let userSelection = userPlay();
-    console.log(`Computer: ${rps[computerSelection]}\nYou: ${rps[userSelection]}`)
+    let userSelection = userInput;
 
-    if(computerSelection === 0) {
-        if (userSelection === 1) {
-            userScore++;
-            console.log("You Won! Paper beats Rock");
-        } else if(userSelection === 2) {
-            computerScore++;
-            console.log("You Lost! Rock beats Scissors");
-        } else {
-            console.log("You both picked Rock! Try again ---");
-            playRound();
-        }
-    } else if(computerSelection === 1) {
-        if (userSelection === 2) {
-            userScore++;
-            console.log("You Won! Scissors beats Paper");
-        } else if(userSelection === 0) {
-            computerScore++;
-            console.log("You Lost! Paper beats Rock");
-        } else {
-            console.log("You both picked Paper! Try again ---");
-            playRound();
-        }
-    } else if(computerSelection === 2) {
-        if (userSelection === 0) {
-            userScore++;
-            console.log("You Won! Rock beats Scissors");
-        } else if(userSelection === 1) {
-            computerScore++;
-            console.log("You Lost! Scissors beats Paper");
-        } else {
-            console.log("You both picked Scissors! Try again ---");
-            playRound();
-        }
-    }
+    countScore(computerSelection, userSelection);
+    updateUI(computerSelection, userSelection);
 }
 
-function game() {
-    for(let i = 0; i < 5; i++) {
-        console.log(`\n\n### Round ${i+1} ###`);
-        playRound();
-    }
-    console.log('\n#####################');
-    console.log(`Total Rounds: 5 \nYour Score: ${userScore} \nComputer Score: ${computerScore}`);
-    
-    if(computerScore > userScore) console.log('You lost in 5 Rounds of Rock Paper Scissors');
-    else console.log('You won in 5 Rounds of Rock Paper Scissors');
-    console.log('#####################');
-}
+function updateUI(computerSelection, userSelection) {
+    scoreBoard.textContent = `Round:  ${userScore+computerScore} | Won: ${userScore} | Lost: ${computerScore}`;
+    dPart1.innerHTML = `<img src="./assets/images/${computerSelection}.png" alt="Computer Selection: ${rps[computerSelection]}">`;
+    dPart2IMG.src = `./assets/images/${userSelection}.png`;
 
-game();
+    if((userScore+computerScore) === 5) {
+        setTimeout(() => alert(`Game Over! You ${userScore > computerScore ? 'Won!' : 'Lost!'}`), 0);
+        location.reload();
+    }
+}
